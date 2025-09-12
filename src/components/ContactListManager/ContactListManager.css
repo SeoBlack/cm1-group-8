@@ -1,0 +1,44 @@
+
+.contact-list {
+  max-width: 700px;
+  margin: 20px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+}
+
+.contact-list h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.contact-list .form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.contact-list input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.contact-list .form button {
+  grid-column: 1 / -1;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.contact-list .form button:hover {
+  background-color: #45a049;
+}
+
+
