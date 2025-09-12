@@ -62,105 +62,17 @@ This approach made the component hard to test, maintain, and reuse. We refactore
 ```jsx
 // ShoppingCart.jsx - Refactored with component separation
 function ShoppingCart() {
-  const [items, setItems] = useState([]);
-  const [newItem, setNewItem] = useState({
-    itemName: "",
-    quantity: 0,
-    price: "",
-    category: categories[0],
-    discount: "",
-  });
-
-  function handleInputChange(event) {
-    const { name, value } = event.target;
-    if (name === "quantity" && value < 1) return;
-    setNewItem((prevItem) => ({ ...prevItem, [name]: value }));
-  }
-
-  function handleAddItem() {
-    if (newItem.itemName.trim() !== "" && newItem.quantity.trim() !== "") {
-      setItems((i) => [...i, { ...newItem, id: Date.now() }]);
-      setNewItem({
-        itemName: "",
-        quantity: 0,
-        price: "",
-        category: categories[0],
-        discount: "",
-      });
-    }
-  }
-
-  function handleDeleteItem(index) {
-    setItems(items.filter((_, i) => i !== index));
-  }
-
-  return (
-    <div className="shopping-cart">
-      <h1 className="shopping-cart-title">Shopping Cart</h1>
-      <Form
-        newItem={newItem}
-        handleInputChange={handleInputChange}
-        onAddItem={handleAddItem}
-      />
-      <ItemsList items={items} onDeleteItem={handleDeleteItem} />
-    </div>
-  );
+  //...component logic
 }
 
 // Form.jsx - Separated form component
 export default function Form({ newItem, handleInputChange, onAddItem }) {
-  return (
-    <div className="shopping-cart-form">
-      <input
-        type="text"
-        placeholder="Enter item name..."
-        name="itemName"
-        value={newItem.itemName}
-        onChange={handleInputChange}
-        className="input-field"
-      />
-      {/* ... other form fields ... */}
-      <button onClick={onAddItem} className="add-button">Add item</button>
-    </div>
-  );
+  //...component logic
 }
 
 // ItemsList.jsx - Separated display component with performance optimization
 export default function ItemsList({ items, onDeleteItem }) {
-  const totalPrice = useMemo(() => {
-    return Math.round(
-      items.reduce((acc, item) => acc + item.price * item.quantity, 0)
-    );
-  }, [items]);
-
-  const totalQuantity = useMemo(() => {
-    return items.reduce((acc, item) => acc + Number(item.quantity), 0);
-  }, [items]);
-
-  return (
-    <>
-      <div className="total-price-container">
-        <div className="total-price">
-          <span className="total-price-label">Total Price:</span>
-          <span className="total-price-value">${totalPrice}</span>
-        </div>
-        <div className="total-quantity">
-          <span className="total-quantity-label">Total Quantity:</span>
-          <span className="total-quantity-value">{totalQuantity}</span>
-        </div>
-      </div>
-      <ol className="shopping-cart-list">
-        {items.map((item, index) => {
-          const CategoryIcon = categoryIcons[item.category] || Package;
-          return (
-            <li key={item.id || index} className="shopping-cart-item">
-              {/* ... item display logic ... */}
-            </li>
-          );
-        })}
-      </ol>
-    </>
-  );
+  //...component logic
 }
 ```
 
