@@ -65,7 +65,6 @@ function RecipeManager() {
           type="text"
           name="instructions"
           placeholder="Enter a instructions..."
-          row={3}
           value={recipeData.instructions}
           onChange={handleChange}
         />
