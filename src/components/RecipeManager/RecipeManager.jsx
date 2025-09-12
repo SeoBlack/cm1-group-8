@@ -82,7 +82,7 @@ function RecipeManager() {
           value={recipeData.nutritionInfo}
           onChange={handleChange}
         />
-        <button onClick={addRecipe}>Add Book</button>
+        <button onClick={addRecipe}>Add Recipe</button>
       </div>
       <ol>
         {recipes.map((recipe, index) => (
