@@ -89,10 +89,7 @@ export default function ItemsList({ items, onDeleteItem }) {
 
 1. **User Experience Matters**: Providing clear feedback for validation errors and success actions significantly improves user experience
 2. **Component Separation**: Breaking down large components into smaller, focused ones improves maintainability and testability
-3. **Performance Optimization**: Using useMemo for expensive calculations prevents unnecessary re-renders
-4. **Data Validation**: Comprehensive validation on both client and server side prevents data inconsistencies
-5. **State Management**: Proper state management with error handling makes applications more robust
-6. **Code Reusability**: Creating reusable components reduces code duplication and improves consistency
+3. **Code Reusability**: Creating reusable components reduces code duplication and improves consistency
 
 # React + Vite
 
