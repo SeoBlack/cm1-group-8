@@ -1,34 +1,43 @@
 import React, { useState } from "react";
-import "./BookCollectionManager.css"
+import "./BookCollectionManager.css";
 
 function BookCollectionManager() {
+  const [formData, setFormData] = useState({
+    title: "",
+    author: "",
+    year: "",
+    publisher: "",
+    ISBN: "",
+  });
+
   const [books, setBooks] = useState([]);
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
 
-  // Handle input change for title
-  function handleTitleChange(event) {
-    setTitle(event.target.value);
-  }
-
-  // Handle input change for author
-  function handleAuthorChange(event) {
-    setAuthor(event.target.value);
-  }
+  // handle change
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   // Add a new book to the list
   function addBook() {
-    if (title.trim() !== "" && author.trim() !== "") {
-      setBooks((b) => [...b, { title, author }]);
-      setTitle("");
-      setAuthor(""); // Clear the input fields
+    if (
+      formData.title.trim() &&
+      formData.author.trim() &&
+      formData.year.trim() &&
+      formData.publisher.trim() &&
+      formData.ISBN.trim()
+    ) {
+      setBooks((prevBooks) => [...prevBooks, formData]);
+      setFormData({ title: "", author: "", year: "", publisher: "", ISBN: "" });
     }
   }
 
   // Delete a book from the list
   function deleteBook(index) {
-    const updatedBooks = books.filter((_, i) => i !== index);
-    setBooks(updatedBooks);
+    setBooks((prevBooks) => prevBooks.filter((_, i) => i !== index));
   }
 
   return (
@@ -37,22 +46,47 @@ function BookCollectionManager() {
       <div>
         <input
           type="text"
+          name="title"
           placeholder="Enter book title..."
-          value={title}
-          onChange={handleTitleChange}
+          value={formData.title}
+          onChange={handleChange}
         />
         <input
           type="text"
+          name="author"
           placeholder="Enter author name..."
-          value={author}
-          onChange={handleAuthorChange}
+          value={formData.author}
+          onChange={handleChange}
+        />
+        <input
+          type="number"
+          name="year"
+          placeholder="Enter a year..."
+          value={formData.year}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="publisher"
+          placeholder="Enter publisher name..."
+          value={formData.publisher}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="ISBN"
+          placeholder="Enter ISBN..."
+          value={formData.ISBN}
+          onChange={handleChange}
         />
         <button onClick={addBook}>Add Book</button>
       </div>
+
       <ol>
         {books.map((book, index) => (
           <li key={index}>
-            {book.title} by {book.author}
+            {book.title} by {book.author} ({book.year}) - {book.publisher}{" "}
+            [ISBN: {book.ISBN}]
             <button onClick={() => deleteBook(index)}>Delete</button>
           </li>
         ))}
