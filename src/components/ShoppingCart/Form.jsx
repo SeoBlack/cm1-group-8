@@ -1,4 +1,5 @@
 import React from "react";
+import { categories } from "./constants";
 
 export default function Form({ newItem, handleInputChange, onAddItem }) {
   return (
@@ -20,6 +21,28 @@ export default function Form({ newItem, handleInputChange, onAddItem }) {
         className="input-field"
         id="quantity"
       />
+      <input
+        type="number"
+        placeholder="Enter price..."
+        name="price"
+        value={newItem.price}
+        onChange={handleInputChange}
+        className="input-field"
+        id="price"
+      />
+      <select
+        name="category"
+        value={newItem.category}
+        onChange={handleInputChange}
+        className="input-field"
+        id="category"
+      >
+        {categories.map((category) => (
+          <option key={category} value={category}>
+            {category}
+          </option>
+        ))}
+      </select>
       <button onClick={onAddItem} className="add-button">
         Add item
       </button>

@@ -2,10 +2,17 @@ import React, { useState } from "react";
 import "./ShoppingCart.css";
 import Form from "./Form";
 import ItemsList from "./ItemsList";
+import { categories } from "./constants";
 
 function ShoppingCart() {
   const [items, setItems] = useState([]);
-  const [newItem, setNewItem] = useState({ itemName: "", quantity: "" });
+  const [newItem, setNewItem] = useState({
+    itemName: "",
+    quantity: 0,
+    price: "",
+    category: categories[0],
+    discount: "",
+  });
 
   function handleInputChange(event) {
     const { name, value } = event.target;
@@ -20,7 +27,13 @@ function ShoppingCart() {
   function handleAddItem() {
     if (newItem.itemName.trim() !== "" && newItem.quantity.trim() !== "") {
       setItems((i) => [...i, newItem]);
-      setNewItem({ itemName: "", quantity: "" });
+      setNewItem({
+        itemName: "",
+        quantity: 0,
+        price: "",
+        category: categories[0],
+        discount: "",
+      });
     }
   }
 
