@@ -205,3 +205,76 @@ Currently, two official plugins are available:
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+
+## 3-  Aashish Timalsina: Doing signup page, contact and book collection
+
+Initially, our Shignup page  were blank, so i created the function and component for cotact but for signup page i colud have make it more readable by sepreating form to another component but i didnt do that 
+
+ const [formData, setFormData] = useState({
+    title: "",
+    author: "",
+    year: "",
+    publisher: "",
+    ISBN: "",
+  });
+
+  const [books, setBooks] = useState([]);
+
+  // handle change
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  common value change so dont have to do it one by one 
+
+const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (
+      errors.email === "Email looks good" &&
+      errors.password === "Password is strong" &&
+      formData.nationality
+    ) {
+      setSubmitted(true);
+    } else {
+      setSubmitted(false);
+    }
+  };
+
+  submit while checking validation
+
+    const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    if (name === "email") {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      setErrors((prev) => ({
+        ...prev,
+        email: emailRegex.test(value)
+          ? "Email looks good"
+          : "Wrong email address, check again",
+      }));
+    }
+
+    if (name === "password") {
+      setErrors((prev) => ({
+        ...prev,
+        password:
+          value.length >= 8 ? "Password is strong" : "Password must be strong",
+      }));
+    }
+  };
+
+  -->validation check
+
+  the code is readable but can be impoved throug file sructure and i will keep that in mind
+
